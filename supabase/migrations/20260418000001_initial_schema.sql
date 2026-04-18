@@ -150,7 +150,8 @@ create table public.draws (
     winning_numbers is null
     or (
       array_length(winning_numbers, 1) = 5
-      and (select bool_and(n between 1 and 45) from unnest(winning_numbers) n)
+      and 1 <= all(winning_numbers)
+      and 45 >= all(winning_numbers)
     )
   ),
   pool_total_minor          integer not null default 0 check (pool_total_minor >= 0),
