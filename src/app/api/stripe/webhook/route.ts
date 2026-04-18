@@ -7,7 +7,6 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 type SubRow = {
-  id: string;
   plan: "monthly" | "yearly";
   price_amount_minor: number;
   currency: string;
@@ -87,7 +86,6 @@ async function upsertSubscription(
     (priceId === process.env.STRIPE_PRICE_YEARLY ? "yearly" : "monthly");
 
   const row: SubRow & { user_id: string; stripe_subscription_id: string } = {
-    id: sub.id,
     user_id: userId,
     stripe_subscription_id: sub.id,
     plan,
